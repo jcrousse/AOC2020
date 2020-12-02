@@ -1,7 +1,7 @@
 
 def get_min_max(min_max_str)
   min_val, max_val = min_max_str.split('-')
-  return min_val.to_i, max_val.to_i
+  [min_val.to_i, max_val.to_i]
 end
 
 def check_count(min_val, max_val, password, letter_check)
