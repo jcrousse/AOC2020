@@ -1,4 +1,3 @@
-file = open('input02.txt')
 
 def get_min_max(min_max_str)
   min_val, max_val = min_max_str.split('-')
@@ -36,8 +35,10 @@ def preprocess(input_line, check_type)
   end
 end
 
-# challenge1 =  file.readlines.map{|val| preprocess(val, "count")}
-# puts challenge1.sum
+file = open('input02.txt')
+challenge1 =  file.readlines.map{|val| preprocess(val, "count")}
+puts challenge1.sum
 
+file = open('input02.txt')
 challenge2 =  file.readlines.map{|val| preprocess(val, "pos")}
 puts challenge2.sum
