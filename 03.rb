@@ -1,6 +1,6 @@
 file = open('input03.txt')
 
-tree_matrix =  file.readlines.map{|val| val}
+tree_matrix =  file.readlines
 
 def get_collisions(tree_positions, n_right=3, n_down=1)
   input_width = tree_positions[0].length
