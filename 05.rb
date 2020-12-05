@@ -18,7 +18,7 @@ puts "Highest seat number : #{seat_ids.max}"
 seat_ids = seat_ids.sort!
 seat_ids.each_index do |idx|
   if idx.between?(1, seat_ids.length - 2)
-    unless (seat_ids[idx -1] + seat_ids[idx + 1]) / 2 == seat_ids[idx]
+    unless (seat_ids[idx - 1] + seat_ids[idx + 1]) / 2 == seat_ids[idx]
       puts "Your seat number: #{seat_ids[idx] - 1}"
     end
   end
