@@ -61,7 +61,6 @@ check_functions['pid'] = lambda {|var| check_passportid(var)}
 def check_passport(passport, expected_keys, check_functions)
   # has_all_entries = expected_keys.map{|k| passport.keys.include?(k)}.all?
   all_valid = check_functions.map {|k, v| v[passport[k]]}.all?
-  all_valid
 end
 
 validity_checks = passport_lines.map{ |passport| check_passport(passport, required_keys, check_functions) ? 1 : 0}
