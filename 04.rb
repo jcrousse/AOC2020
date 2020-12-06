@@ -12,7 +12,7 @@ passport_lines = passports_input
                                 .map{|subval| subval.split(":")}}
                    .map{|val| Hash[*val.collect {|v| [v[0], v[1]]}.flatten]}
 
-required_keys = %w(byr iyr eyr hgt hcl ecl pid)
+$required_keys = %w(byr iyr eyr hgt hcl ecl pid)
 
 def height_check(height_input)
   check_val = false
@@ -58,11 +58,11 @@ check_functions['ecl'] = lambda {|var| valid_hair_color.include?(var)}
 check_functions['pid'] = lambda {|var| check_passportid(var)}
 
 
-def check_passport(passport, expected_keys, check_functions)
-  # has_all_entries = expected_keys.map{|k| passport.keys.include?(k)}.all?
+def check_passport(passport, check_functions)
+  # has_all_entries = $required_keys.map{|k| passport.keys.include?(k)}.all?
   all_valid = check_functions.map {|k, v| v[passport[k]]}.all?
 end
 
-validity_checks = passport_lines.map{ |passport| check_passport(passport, required_keys, check_functions) ? 1 : 0}
+validity_checks = passport_lines.map{ |passport| check_passport(passport, check_functions) ? 1 : 0}
 
 puts validity_checks.sum
