@@ -1,4 +1,4 @@
-testing = true
+testing = false
 file_name = testing ? 'input13_test.txt' : 'input13.txt'
 file = open(file_name).readlines
 
@@ -35,21 +35,24 @@ def wait_time_for_timestamp(bus_id, timestamp)
 end
 
 original_timestamp = busses[0][1]
-# busses[0][0] = original_timestamp
 timestamp = original_timestamp
+increment = original_timestamp
+busses = busses[1..]
+
 until stop
-  total_valid = 0
+  idx_to_remove = []
   busses.each do |num_minutes, bus_id|
-    unless wait_time_for_timestamp(bus_id, timestamp).eql?(num_minutes)
-      break
+    if wait_time_for_timestamp(bus_id, timestamp).eql?(num_minutes)
+      increment *= bus_id
+      idx_to_remove << bus_id
     end
-    total_valid += 1
   end
-  if total_valid.eql?(busses.length)
+  busses.reject!{|bus| idx_to_remove.include?(bus[1])}
+  if busses.empty?
     puts timestamp
     stop = true
   end
-  timestamp +=original_timestamp
+  timestamp +=increment
 end
 
 # 1068781
