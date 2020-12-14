@@ -57,6 +57,3 @@ until stop
   end
   timestamp +=increment
 end
-
-# 1068781
-# 100000000000000
