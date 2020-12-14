@@ -39,6 +39,9 @@ timestamp = original_timestamp
 increment = original_timestamp
 busses = busses[1..]
 
+# cleanup wait times:
+busses = busses.map{|b| [b[0] % b[1], b[1]]}
+
 until stop
   idx_to_remove = []
   busses.each do |num_minutes, bus_id|
